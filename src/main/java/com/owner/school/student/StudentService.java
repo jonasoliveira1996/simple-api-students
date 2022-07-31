@@ -13,7 +13,7 @@ public class StudentService {
 
     private StudentRepository studentRepository;
 
-    public ResponseEntity<List<Student>> getAllStudents(Student student) {
+    public ResponseEntity<List<Student>> getAllStudents() {
         return ResponseEntity.status(HttpStatus.OK).body(studentRepository.findAll());
     }
 

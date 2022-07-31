@@ -14,8 +14,8 @@ public class StudentController {
     private final StudentService studentService;
 
     @GetMapping
-    public ResponseEntity<List<Student>> findAllStudents(Student student) {
-        return studentService.getAllStudents(student);
+    public ResponseEntity<List<Student>> findAllStudents() {
+        return studentService.getAllStudents();
     }
 
     @PostMapping
