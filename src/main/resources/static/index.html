@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Students</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fjalla+One|Libre+Baskerville">
+</head>
+
+<body>
+
+    <div>
+        <h3 class="title">Students Registration</h3>
+    </div>
+
+    <form>
+        <fieldset>
+            <div class="field">
+                <input type="text" id="firstName" placeholder="First Name">
+            </div>
+
+            <div class="field">
+                <input type="text" id="lastName" placeholder="Last Name">
+            </div>
+
+            <div class="field">
+                <input type="email" id="email"placeholder="Email">
+            </div>
+
+            <div class="field">
+                <select id="gender">
+                    <option selected disabled value="">Select Gender</option>
+                    <option value="MALE">Male</option>
+                    <option value="FEMALE">Female</option>
+                </select>
+            </div>
+
+            <div class="button">
+                <button type="submit" onclick="Registration()">Register</button>
+            </div>
+        </fieldset>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+
+        function Registration(){
+
+                var firstName = $("#firstName").val();
+                var lastName = $("#lastName").val();
+                var email = $("#email").val();
+                var gender = $("#gender :selected").val();
+
+                $.ajax({
+				method: "POST",
+				url: "/api/v1/students",
+				data: JSON.stringify({firstName, lastName, email, gender}),
+				contentType: "application/json; charset-utf-8",
+
+				success: function (response){
+					alert("Registration successefully")
+				}
+			}).fail(function (xhr, status, errorThrown) {
+				alert ("Registration error: " + xhr.responseText);
+			});
+		}
+            
+    </script>
+
+</body>
+</html>
